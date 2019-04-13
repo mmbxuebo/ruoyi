@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.system.mapper.WxUserInfoMapper">
+    
+    <resultMap type="WxUserInfo" id="WxUserInfoResult">
+        <result property="id"    column="id"    />
+        <result property="subscribe"    column="subscribe"    />
+        <result property="openid"    column="openid"    />
+        <result property="nickname"    column="nickname"    />
+        <result property="sex"    column="sex"    />
+        <result property="country"    column="country"    />
+        <result property="province"    column="province"    />
+        <result property="city"    column="city"    />
+        <result property="language"    column="language"    />
+        <result property="headimgurl"    column="headimgurl"    />
+        <result property="subscribeTime"    column="subscribe_time"    />
+        <result property="unionid"    column="unionid"    />
+        <result property="remark"    column="remark"    />
+        <result property="groupid"    column="groupid"    />
+        <result property="tagidList"    column="tagid_list"    />
+        <result property="subscribeScene"    column="subscribe_scene"    />
+        <result property="qrScene"    column="qr_scene"    />
+        <result property="qrSceneStr"    column="qr_scene_str"    />
+        <result property="updateUserId"    column="update_user_id"    />
+        <result property="updateTime"    column="update_time"    />
+        <result property="status"    column="status"    />
+        <result property="updateStatus"    column="update_status"    />
+    </resultMap>
+	
+	<sql id="selectWxUserInfoVo">
+        select id, subscribe, openid, nickname, sex, country, province, city, language, headimgurl, subscribe_time, unionid, remark, groupid, tagid_list, subscribe_scene, qr_scene, qr_scene_str, update_user_id, update_time, status, update_status from wx_user_info
+    </sql>
+	
+    <select id="selectWxUserInfoList" parameterType="WxUserInfo" resultMap="WxUserInfoResult">
+        <include refid="selectWxUserInfoVo"/>
+        <where>  
+            <if test="id != null "> and id = #{id}</if>
+             <if test="subscribe != null "> and subscribe = #{subscribe}</if>
+             <if test="openid != null  and openid != '' "> and openid = #{openid}</if>
+             <if test="nickname != null  and nickname != '' "> and nickname = #{nickname}</if>
+             <if test="sex != null "> and sex = #{sex}</if>
+             <if test="country != null  and country != '' "> and country = #{country}</if>
+             <if test="province != null  and province != '' "> and province = #{province}</if>
+             <if test="city != null  and city != '' "> and city = #{city}</if>
+             <if test="language != null  and language != '' "> and language = #{language}</if>
+             <if test="headimgurl != null  and headimgurl != '' "> and headimgurl = #{headimgurl}</if>
+             <if test="subscribeTime != null "> and subscribe_time = #{subscribeTime}</if>
+             <if test="unionid != null  and unionid != '' "> and unionid = #{unionid}</if>
+             <if test="remark != null  and remark != '' "> and remark = #{remark}</if>
+             <if test="groupid != null "> and groupid = #{groupid}</if>
+             <if test="tagidList != null  and tagidList != '' "> and tagid_list = #{tagidList}</if>
+             <if test="subscribeScene != null  and subscribeScene != '' "> and subscribe_scene = #{subscribeScene}</if>
+             <if test="qrScene != null  and qrScene != '' "> and qr_scene = #{qrScene}</if>
+             <if test="qrSceneStr != null  and qrSceneStr != '' "> and qr_scene_str = #{qrSceneStr}</if>
+             <if test="updateUserId != null "> and update_user_id = #{updateUserId}</if>
+             <if test="updateTime != null "> and update_time = #{updateTime}</if>
+             <if test="status != null "> and status = #{status}</if>
+             <if test="updateStatus != null "> and update_status = #{updateStatus}</if>
+         </where>
+    </select>
+    
+    <select id="selectWxUserInfoById" parameterType="Long" resultMap="WxUserInfoResult">
+        <include refid="selectWxUserInfoVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertWxUserInfo" parameterType="WxUserInfo">
+        insert into wx_user_info
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null  ">id,</if>
+			<if test="subscribe != null  ">subscribe,</if>
+			<if test="openid != null  and openid != ''  ">openid,</if>
+			<if test="nickname != null  and nickname != ''  ">nickname,</if>
+			<if test="sex != null  ">sex,</if>
+			<if test="country != null  and country != ''  ">country,</if>
+			<if test="province != null  and province != ''  ">province,</if>
+			<if test="city != null  and city != ''  ">city,</if>
+			<if test="language != null  and language != ''  ">language,</if>
+			<if test="headimgurl != null  and headimgurl != ''  ">headimgurl,</if>
+			<if test="subscribeTime != null  ">subscribe_time,</if>
+			<if test="unionid != null  and unionid != ''  ">unionid,</if>
+			<if test="remark != null  and remark != ''  ">remark,</if>
+			<if test="groupid != null  ">groupid,</if>
+			<if test="tagidList != null  and tagidList != ''  ">tagid_list,</if>
+			<if test="subscribeScene != null  and subscribeScene != ''  ">subscribe_scene,</if>
+			<if test="qrScene != null  and qrScene != ''  ">qr_scene,</if>
+			<if test="qrSceneStr != null  and qrSceneStr != ''  ">qr_scene_str,</if>
+			<if test="updateUserId != null  ">update_user_id,</if>
+			<if test="updateTime != null  ">update_time,</if>
+			<if test="status != null  ">status,</if>
+			<if test="updateStatus != null  ">update_status,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null  ">#{id},</if>
+			<if test="subscribe != null  ">#{subscribe},</if>
+			<if test="openid != null  and openid != ''  ">#{openid},</if>
+			<if test="nickname != null  and nickname != ''  ">#{nickname},</if>
+			<if test="sex != null  ">#{sex},</if>
+			<if test="country != null  and country != ''  ">#{country},</if>
+			<if test="province != null  and province != ''  ">#{province},</if>
+			<if test="city != null  and city != ''  ">#{city},</if>
+			<if test="language != null  and language != ''  ">#{language},</if>
+			<if test="headimgurl != null  and headimgurl != ''  ">#{headimgurl},</if>
+			<if test="subscribeTime != null  ">#{subscribeTime},</if>
+			<if test="unionid != null  and unionid != ''  ">#{unionid},</if>
+			<if test="remark != null  and remark != ''  ">#{remark},</if>
+			<if test="groupid != null  ">#{groupid},</if>
+			<if test="tagidList != null  and tagidList != ''  ">#{tagidList},</if>
+			<if test="subscribeScene != null  and subscribeScene != ''  ">#{subscribeScene},</if>
+			<if test="qrScene != null  and qrScene != ''  ">#{qrScene},</if>
+			<if test="qrSceneStr != null  and qrSceneStr != ''  ">#{qrSceneStr},</if>
+			<if test="updateUserId != null  ">#{updateUserId},</if>
+			<if test="updateTime != null  ">#{updateTime},</if>
+			<if test="status != null  ">#{status},</if>
+			<if test="updateStatus != null  ">#{updateStatus},</if>
+         </trim>
+    </insert>
+	 
+    <update id="updateWxUserInfo" parameterType="WxUserInfo">
+        update wx_user_info
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="subscribe != null  ">subscribe = #{subscribe},</if>
+            <if test="openid != null  and openid != ''  ">openid = #{openid},</if>
+            <if test="nickname != null  and nickname != ''  ">nickname = #{nickname},</if>
+            <if test="sex != null  ">sex = #{sex},</if>
+            <if test="country != null  and country != ''  ">country = #{country},</if>
+            <if test="province != null  and province != ''  ">province = #{province},</if>
+            <if test="city != null  and city != ''  ">city = #{city},</if>
+            <if test="language != null  and language != ''  ">language = #{language},</if>
+            <if test="headimgurl != null  and headimgurl != ''  ">headimgurl = #{headimgurl},</if>
+            <if test="subscribeTime != null  ">subscribe_time = #{subscribeTime},</if>
+            <if test="unionid != null  and unionid != ''  ">unionid = #{unionid},</if>
+            <if test="remark != null  and remark != ''  ">remark = #{remark},</if>
+            <if test="groupid != null  ">groupid = #{groupid},</if>
+            <if test="tagidList != null  and tagidList != ''  ">tagid_list = #{tagidList},</if>
+            <if test="subscribeScene != null  and subscribeScene != ''  ">subscribe_scene = #{subscribeScene},</if>
+            <if test="qrScene != null  and qrScene != ''  ">qr_scene = #{qrScene},</if>
+            <if test="qrSceneStr != null  and qrSceneStr != ''  ">qr_scene_str = #{qrSceneStr},</if>
+            <if test="updateUserId != null  ">update_user_id = #{updateUserId},</if>
+            <if test="updateTime != null  ">update_time = #{updateTime},</if>
+            <if test="status != null  ">status = #{status},</if>
+            <if test="updateStatus != null  ">update_status = #{updateStatus},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+	<delete id="deleteWxUserInfoById" parameterType="Long">
+        delete from wx_user_info where id = #{id}
+    </delete>
+	
+    <delete id="deleteWxUserInfoByIds" parameterType="String">
+        delete from wx_user_info where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+    
+</mapper>
